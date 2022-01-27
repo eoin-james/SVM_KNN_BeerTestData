@@ -11,8 +11,8 @@ TEST_PATH = 'BeerData/beer_test.csv'
 def main():
     x_train, x_test, y_train, y_test, sc = pre_process(TRAIN_PATH, TEST_PATH)
 
-    knn_pred = knn_classifier(x_train, x_test, y_train)
-    svm_pred = svm_classifier(x_train, x_test, y_train)
+    knn_pred = knn_classifier(x_train, y_train, x_test)
+    svm_pred = svm_classifier(x_train, y_train, x_test)
 
     knn_cm = confusion_matrix(y_test, knn_pred)
     svm_cm = confusion_matrix(y_test, svm_pred)

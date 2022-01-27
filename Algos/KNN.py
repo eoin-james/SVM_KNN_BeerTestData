@@ -11,8 +11,8 @@ K Nearest Neighbour Classifier for Beer Classification
 """
 
 # Data Path
-TRAIN_PATH = '../BeerData/beer_training.csv'
-TEST_PATH = '../BeerData/beer_test.csv'
+TRAIN_PATH = 'BeerData/beer_training.csv'
+TEST_PATH = 'BeerData/beer_test.csv'
 
 # HyperParam
 K = list(range(9, 14, 2))  # K = 9 -> 13 odd only
@@ -70,7 +70,7 @@ def knn_classifier(x_train, y_train, x_test):
 
 def main():
     # Preprocess Data
-    x_train, x_test, y_train, y_test, sc = dpp.pre_process(TRAIN_PATH, TEST_PATH)
+    x_train, x_test, y_train, y_test, sc = pre_process(TRAIN_PATH, TEST_PATH)
 
     # Run Classifier
     # knn_hp_testing(x_train, y_train, x_test, y_test)

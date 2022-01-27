@@ -8,7 +8,7 @@ TRAIN_PATH = '../BeerData/beer_training.csv'
 TEST_PATH = '../BeerData/beer_test.csv'
 
 
-def svm_classifier(x_train, x_test, y_train):
+def svm_classifier(x_train, y_train, x_test):
     clf = svm.SVC(kernel='poly', degree=6)
     clf.fit(x_train, y_train.ravel())
     y_pred = clf.predict(x_test)
@@ -17,7 +17,7 @@ def svm_classifier(x_train, x_test, y_train):
 
 def main():
     # Preprocess Data
-    x_train, x_test, y_train, y_test, sc = dpp.pre_process(TRAIN_PATH, TEST_PATH)
+    x_train, x_test, y_train, y_test, sc = pre_process(TRAIN_PATH, TEST_PATH)
 
     y_pred = svm_classifier(x_train, x_test, y_train)
     cm = confusion_matrix(y_test, y_pred)
