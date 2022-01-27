@@ -3,18 +3,15 @@
 import pandas as pd
 import numpy as np
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
-from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-"""Data files headings are 
-calorific_value, nitrogen, turbidity, style, alcohol, sugars, bitterness, beer_id, colour, degree_of_fermentation"""
+"""
+Data files headings are 
+calorific_value, nitrogen, turbidity, style, alcohol, sugars, bitterness, beer_id, colour, degree_of_fermentation
+"""
 
 
 def pre_process(train_file, test_file):
-    # pd.set_option('display.max_rows', 500)
-    # pd.set_option('display.max_columns', 500)
-    # pd.set_option('display.width', 1000)
-
     # Extract training data to pandas file and add headings
     training_df = pd.read_csv(train_file, sep='\t', engine='python')
     training_df.columns = ["calorific_value", "nitrogen", "turbidity", "style", "alcohol", "sugars", "bitterness",
@@ -40,13 +37,6 @@ def pre_process(train_file, test_file):
 
     imputer.fit(x_test)
     x_test = imputer.transform(x_test)
-    print(type(y_train), type(x_train))
-
-    # Create Dummy Variables
-    # One Hot Encode
-    # ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])])
-    # y_train = ct.fit_transform(y_train)
-    # y_test = ct.fit_transform(y_test)
 
     # Label Encode the Dependant Variable
     lb = LabelEncoder()
@@ -58,12 +48,4 @@ def pre_process(train_file, test_file):
     x_train = sc.fit_transform(x_train)
     x_test = sc.transform(x_test)
 
-    print(type(y_train), type(x_train))
-
     return x_train, x_test, y_train, y_test, sc
-
-
-train_path = '/Users/eoinmac/PycharmProjects/MachineLearning/Assignment_1/beer_training.csv'
-test_path = '/Users/eoinmac/PycharmProjects/MachineLearning/Assignment_1/beer_test.csv'
-
-# pre_process(train_path, test_path)
